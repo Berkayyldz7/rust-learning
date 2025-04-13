@@ -1,4 +1,4 @@
-use std::io;
+use std::{f32::consts, io};
 const MY_FIRST_CONST: u32 = 3 * 60 * 60;
 // let mut myVar: String = "my first variable"; ---> Hata verir çünkü main fonksiyonu kapsamında tanımlanabilir.
 
@@ -46,6 +46,12 @@ fn main() {
     // 1101100
     // 1101100
     // 1101111
+
+    let my_num = 2110;
+
+    let pointer = &my_num as *const i32;
+
+    println!("{:p}", pointer)
 
 
 }
