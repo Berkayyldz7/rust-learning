@@ -1,3 +1,7 @@
+#[allow(unused_variables)]
+#[allow(unused_imports)] // Uyarıları gizler.
+#[allow(non_snake_case)]
+
 use std::{f32::consts, io};
 const MY_FIRST_CONST: u32 = 3 * 60 * 60;
 // let mut myVar: String = "my first variable"; ---> Hata verir çünkü main fonksiyonu kapsamında tanımlanabilir.
@@ -15,14 +19,16 @@ fn main() {
 
     let mut new_str = String::new(); // heap üzerinde dinamik bir adresleme oluşturur.
 
-    io::stdin()
-    .read_line(&mut new_str)
-    .expect("jfjfjfj");
+    match io::stdin().read_line(&mut new_str){
+        Ok(prm) => {
+            println!("{}", prm);
+        },
+        Err(_)=>{
+            println!("ann error occured.")
+        }
+    }
     
-
-
-
-    let mut my_var3: &str = "efg";
+    
 
     println!("{}",myVar2);
 
@@ -51,7 +57,26 @@ fn main() {
 
     let pointer = &my_num as *const i32;
 
-    println!("{:p}", pointer)
+    println!("{:p}", pointer);
+
+    {
+        let x :&str =  "inner scope values";
+        println!("{} hellos from inner scope", x);
+
+        let my_num = 211015;
+        println!("{} inside of the inner scope hellos for firs shadowing", my_num );
+    }
+
+    {
+        let x: u32 = 2356;
+        println!("{:#x}", x);
+
+        // 0x934
+
+        println!("{:e}", x)
+
+        // 2.356e3 ---> e3'ün anlamı 10 üzeri 3 demek
+    }
 
 
 }
