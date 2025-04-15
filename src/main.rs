@@ -79,4 +79,24 @@ fn main() {
     }
 
 
+    {
+        let x = 25;
+        let ref_x = &x;
+
+        println!("{} x'in refensı ...", ref_x);
+
+        let mut y:i32 = 10;
+        y = *ref_x;  // *ref_x demek x'in pointer'ı demek yani onun refer ettiği veri alanı demek.
+        println!("{} :y values equal to", y);
+
+
+        let mut z = 15;
+        let ref_z = &mut z as *const i32;
+
+        println!("{:p} z'nin pointerı", ref_z);
+
+        // 0x16d8d6584 z'nin pointerı
+    }
+
+
 }
