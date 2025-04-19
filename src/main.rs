@@ -60,6 +60,9 @@ fn main() {
     println!("{:p}", pointer);
 
     {
+
+        // Shadowing işlemleri
+        
         let x :&str =  "inner scope values";
         println!("{} hellos from inner scope", x);
 
@@ -68,6 +71,8 @@ fn main() {
     }
 
     {
+
+        // Decimal veriyi hexadecimal olarak yazdırma 
         let x: u32 = 2356;
         println!("{:#x}", x);
 
@@ -79,7 +84,8 @@ fn main() {
     }
 
 
-    {
+    { 
+        // Pointer üzerinden veriye erişme ve belllekteki adresini ekrana yazdırma
         let x = 25;
         let ref_x = &x;
 
@@ -96,6 +102,81 @@ fn main() {
         println!("{:p} z'nin pointerı", ref_z);
 
         // 0x16d8d6584 z'nin pointerı
+    }
+
+    { 
+        // Referans Üzerinden Verinin Değerini Değiştirme
+
+        let mut xi = 21;
+        let ref_xi = &mut xi;
+
+        *ref_xi = 200;
+
+        println!("{} : xi'nin referansı üzerinden değişmiş değeri", xi);
+
+
+    }
+
+
+    {
+        // Char Type
+
+        let myChar: char = '😂';
+        println!("{}",myChar);
+
+        // Her bir char bellekte 4 bayt yer kaplar.
+        // '' ile tanımlanır.
+    }
+
+    {
+        // float
+
+        let my_float: f64 = 21.10;
+
+        println!("{}",my_float);
+    }
+
+    {
+        // Tuple 
+
+        // Farklı veri tiplerini depolamaya yarar.
+
+        let tup:(i32,f64,char,u16,&str, String) = (21,21.10,'😘',2110,"abc", new_str.clone());
+
+        // Eğer bir değerin sahipliği taşınmışsa ve sonra orijinal sahibi tarafından kullanılmaya çalışılırsa, derleyici bu durumu sahiplik kuralı ihlali olarak algılar ve hata verir.
+
+        println!("{}",tup.5);
+
+    }
+
+
+    {
+        let my_int:i32 = 2110;
+        let my_int_ref = &my_int;
+        let tup_2:(&i32, f64, String) = (my_int_ref, 21.10, new_str); // Burdaki tuple içinde new_str kullanmaya kalktığımızda; new_str, yukaridaki ( 144. satır ) tup tuplenın içinde bulunduğu kod bloğundan dışarı çıktığı için sahipliği serbest bırakıldı ve bellek temizlendi. 
+        // tup_2'de new_str'nin yeni sahibi olmak isteyecektir. Yani new_str sahipliği taşınacaktır MOVE EDİLECEKTİR.
+        // Ama sorun şurda new_str artık YAŞAMIYOR!!!
+        // Çünkü 150. kod satırından itibaren rust Drop fonksiyonunu çağırdı ve belleği temizledi.
+        // Yukarıdaki satırda da bahsedildiği üzere new_str; tup onun yeni sahibi olduğu için tup'un tanımlandığı kod blokları içerisinde yaşar ve serbest bırakılır.
+
+        // Eğer bir değerin sahipliği taşınmışsa ve sonra orijinal sahibi tarafından kullanılmaya çalışılırsa, derleyici bu durumu sahiplik kuralı ihlali olarak algılar ve hata verir.
+
+        println!("{}", tup_2.2);
+    }
+
+    // Main() scope içinde ******
+
+    let my_str_2: String = String::from("abc");
+    // ----------------------------------------
+
+    {
+        let tup_3:(String, f64, bool) = (my_str_2.clone(), 21.10, true);
+        println!("{}", tup_3.0);
+    }
+
+    {
+        let tup_4 = (my_str_2, "abc", 21);
+        println!("{}",tup_4.0);
     }
 
 
