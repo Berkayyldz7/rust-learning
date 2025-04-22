@@ -166,7 +166,7 @@ fn main() {
 
     // Main() scope içinde ******
 
-    let my_str_2: String = String::from("abc");
+    let my_str_2: String = String::from("_clonned_str");
     // ----------------------------------------
 
     {
@@ -175,8 +175,17 @@ fn main() {
     }
 
     {
-        let tup_4 = (my_str_2, "abc", 21);
+        let tup_4 = (my_str_2, "this string was clonned because every variables has one owner", 21);
         println!("{}",tup_4.0);
+    }
+
+    {
+        // ARRAY TYPE
+
+        let my_arr = [1234];
+        let my_str_arr:[&str; 1] = ["abcdf"];
+
+        println!("{}",my_str_arr[0]);
     }
 
 
