@@ -1,3 +1,4 @@
+use std::io::stdin;
 #[allow(unused_variables)]
 #[allow(unused_imports)] // Uyarıları gizler.
 #[allow(non_snake_case)]
@@ -186,6 +187,21 @@ fn main() {
         let my_str_arr:[&str; 1] = ["abcdf"];
 
         println!("{}",my_str_arr[0]);
+    }
+
+
+    {
+        // Array Access 
+
+        let arr = [1,2,3,4,5];
+
+        println!("please enter an array index");
+
+        let mut index = String::new();
+
+        io:stdin().read_line(&mut index).expect("unknown error has occured.");
+
+
     }
 
 
