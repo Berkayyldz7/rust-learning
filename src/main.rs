@@ -199,7 +199,13 @@ fn main() {
 
         let mut index = String::new();
 
-        io:stdin().read_line(&mut index).expect("unknown error has occured.");
+        io::stdin().read_line(&mut index).expect("unknown error has occured.");
+
+        let index_finder: usize = index.trim().parse().expect("index must be a number");
+
+        let element = arr[index_finder];
+
+        println!("The value of the element at this index: {} and element is {}", index_finder, element);
 
 
     }
